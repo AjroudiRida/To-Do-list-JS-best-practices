@@ -1,4 +1,6 @@
-import { addTask, removeTask, edit, statusUpdate, clearAll } from './util.js';
+import {
+  addTask, removeTask, edit, statusUpdate, clearAll,
+} from './util.js';
 
 describe('add and remove items', () => {
   test('add an item to the list', () => {
@@ -26,27 +28,25 @@ describe('add and remove items', () => {
 
 describe('edit, update completed status and clear All', () => {
   test('edit', () => {
+    const data = [{ description: 'description', completed: false, index: 0 }];
+    localStorage.setItem('taskList', JSON.stringify(data));
 
-    const data = [{description: 'description', completed: false, index:0}]
-    localStorage.setItem('taskList', JSON.stringify(data))
-
-    document.body.innerHTML =`
+    document.body.innerHTML = `
     <div class='task-container'>
       <div class='task'>
       ${data[0].description}
       </div>
     </div>  
-    `
-  
-    edit(localStorage)
-    const tasks = document.querySelectorAll('.task-container .task .content');
-    expect(tasks[0].textContent.trim()).toBe('updated description')
+    `;
 
-  })
+    edit(localStorage);
+    const tasks = document.querySelectorAll('.task-container .task .content');
+    expect(tasks[0].textContent.trim()).toBe('updated description');
+  });
 
   test('completed status update', () => {
-    const data = [{description: 'description', completed: false, index:0}]
-    localStorage.setItem('taskList', JSON.stringify(data))
+    const data = [{ description: 'description', completed: false, index: 0 }];
+    localStorage.setItem('taskList', JSON.stringify(data));
     document.body.innerHTML = `
     <div class='task-container'>
       <div class='task'>
@@ -59,17 +59,16 @@ describe('edit, update completed status and clear All', () => {
           </div>
       </div>
     </div>
-    `
-    statusUpdate()
-    const tasks = JSON.parse(localStorage.getItem('taskList'))
-    const completed = tasks[0].completed
-    expect(completed).toBeTruthy()
-
-  })
+    `;
+    statusUpdate();
+    const tasks = JSON.parse(localStorage.getItem('taskList'));
+    const { completed } = tasks[0];
+    expect(completed).toBeTruthy();
+  });
 
   test('clear all', () => {
-    const data = [{description: 'description', completed: false, index:0}]
-    localStorage.setItem('taskList', JSON.stringify(data))
+    const data = [{ description: 'description', completed: false, index: 0 }];
+    localStorage.setItem('taskList', JSON.stringify(data));
     document.body.innerHTML = `
     <div class='task-container'>
       <div class='task'>
@@ -82,9 +81,9 @@ describe('edit, update completed status and clear All', () => {
           </div>
       </div>
     </div>
-    `
-    clearAll()
-    const tasks = document.querySelectorAll('.task-container .task')
-    expect(tasks).toHaveLength(0)
-  })
-})
+    `;
+    clearAll();
+    const tasks = document.querySelectorAll('.task-container .task');
+    expect(tasks).toHaveLength(0);
+  });
+});

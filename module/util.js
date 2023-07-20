@@ -82,33 +82,34 @@ const statusUpdate = () => {
   const data = JSON.parse(localStorage.getItem('taskList'));
   tasks.forEach((task) => {
     const check = task.querySelector('.checkbox');
-      if (check.checked) {
-        data.forEach((tsk) => {
-          tsk.completed = true;
-          localStorage.setItem('taskList', JSON.stringify(data));
-        });
-      } else {
-        data.forEach((tsk) => {
-          tsk.completed = false;
-          localStorage.setItem('taskList', JSON.stringify(data));
-        });
-      }
+    if (check.checked) {
+      data.forEach((tsk) => {
+        tsk.completed = true;
+        localStorage.setItem('taskList', JSON.stringify(data));
+      });
+    } else {
+      data.forEach((tsk) => {
+        tsk.completed = false;
+        localStorage.setItem('taskList', JSON.stringify(data));
+      });
+    }
   });
 };
 
 const clearAll = () => {
   const taskContainer = document.querySelector('.task-container');
   const tasks = taskContainer.querySelectorAll('.task');
-  let data = JSON.parse(localStorage.getItem('taskList'));  
-    tasks.forEach((task) => {
-      const check = task.querySelector('.checkbox');
-      if (check.checked) {
-        data = []
-        localStorage.setItem('taskList', JSON.stringify(data));
-        display(localStorage);
-      }
-    });
-  
+  let data = JSON.parse(localStorage.getItem('taskList'));
+  tasks.forEach((task) => {
+    const check = task.querySelector('.checkbox');
+    if (check.checked) {
+      data = [];
+      localStorage.setItem('taskList', JSON.stringify(data));
+      display(localStorage);
+    }
+  });
 };
 
-export { addTask, removeTask, edit, statusUpdate, clearAll };
+export {
+  addTask, removeTask, edit, statusUpdate, clearAll,
+};
