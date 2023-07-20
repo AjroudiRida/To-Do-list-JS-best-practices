@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.96% </span>
+                <span class="strong">96.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>32/33</span>
+                <span class='fraction'>29/30</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.96% </span>
+                <span class="strong">96.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>32/33</span>
+                <span class='fraction'>29/30</span>
             </div>
         
             
@@ -129,14 +129,7 @@
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,7 +152,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -189,15 +181,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -205,12 +195,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
-&nbsp;
-const display = (localStorage) =&gt; {
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const display = (localStorage) =&gt; {
   const taskContainer = document.querySelector('.task-container');
   const data = JSON.parse(localStorage.getItem('taskList'));
- 
+&nbsp;
   taskContainer.innerHTML = '';
   data.forEach((task) =&gt; {
     const elem = `
@@ -234,7 +222,6 @@ const display = (localStorage) =&gt; {
     currentTask.setAttribute('class', 'task');
     currentTask.setAttribute('data-index', task.index);
     currentTask.innerHTML = elem;
-    console.log(data)
     taskContainer.appendChild(currentTask);
   });
 };
@@ -242,40 +229,38 @@ const display = (localStorage) =&gt; {
 const addTask = (taskList, localStorage) =&gt; {
   let data = [];
 &nbsp;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem('taskList')) {
-<span class="cstat-no" title="statement not covered" >          data = JSON.parse(localStorage.getItem('taskList'));</span>
-        } else {
-          localStorage.setItem('taskList', JSON.stringify(taskList));
-          data = JSON.parse(localStorage.getItem('taskList'));
-        }
-        const description = "description"
-        const newIndex = data.length === 0 ? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >data.length;</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (localStorage.getItem('taskList')) {
+<span class="cstat-no" title="statement not covered" >    data = JSON.parse(localStorage.getItem('taskList'));</span>
+  } else {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+    data = JSON.parse(localStorage.getItem('taskList'));
+  }
+  const description = 'description';
+  const newIndex = data.length === 0 ? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >data.length;</span>
 &nbsp;
-        const task = {
-          description: description,
-          completed: false,
-          index: newIndex,
-        };
+  const task = {
+    description,
+    completed: false,
+    index: newIndex,
+  };
 &nbsp;
-        data.push(task);
-        localStorage.setItem('taskList', JSON.stringify(data));
-        console.log(data)
-        display(localStorage)
-      
+  data.push(task);
+  localStorage.setItem('taskList', JSON.stringify(data));
+  display(localStorage);
 };
 &nbsp;
 const removeTask = (localStorage) =&gt; {
   const taskContainer = document.querySelector('.task-container');
   const tasks = taskContainer.querySelectorAll('.task');
-  tasks.forEach((task) =&gt; {
-    const data = JSON.parse(localStorage.getItem('taskList'));
-    const newArr = []
+  tasks.forEach(() =&gt; {
+    // const data = JSON.parse(localStorage.getItem('taskList'));
+    const newArr = [];
     localStorage.setItem('taskList', JSON.stringify(newArr));
     display(localStorage);
   });
 };
 &nbsp;
-export { addTask, removeTask } 
+export { addTask, removeTask };
 // module.exports = removeTask</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -283,7 +268,7 @@ export { addTask, removeTask }
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-19T22:31:59.828Z
+                at 2023-07-20T09:18:16.665Z
             </div>
         <script src="prettify.js"></script>
         <script>

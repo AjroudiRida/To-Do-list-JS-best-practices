@@ -1,9 +1,7 @@
-
-
 const display = (localStorage) => {
   const taskContainer = document.querySelector('.task-container');
   const data = JSON.parse(localStorage.getItem('taskList'));
- 
+
   taskContainer.innerHTML = '';
   data.forEach((task) => {
     const elem = `
@@ -27,7 +25,6 @@ const display = (localStorage) => {
     currentTask.setAttribute('class', 'task');
     currentTask.setAttribute('data-index', task.index);
     currentTask.innerHTML = elem;
-    console.log(data)
     taskContainer.appendChild(currentTask);
   });
 };
@@ -35,39 +32,36 @@ const display = (localStorage) => {
 const addTask = (taskList, localStorage) => {
   let data = [];
 
-        if (localStorage.getItem('taskList')) {
-          data = JSON.parse(localStorage.getItem('taskList'));
-        } else {
-          localStorage.setItem('taskList', JSON.stringify(taskList));
-          data = JSON.parse(localStorage.getItem('taskList'));
-        }
-        const description = "description"
-        const newIndex = data.length === 0 ? 0 : data.length;
+  if (localStorage.getItem('taskList')) {
+    data = JSON.parse(localStorage.getItem('taskList'));
+  } else {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+    data = JSON.parse(localStorage.getItem('taskList'));
+  }
+  const description = 'description';
+  const newIndex = data.length === 0 ? 0 : data.length;
 
-        const task = {
-          description: description,
-          completed: false,
-          index: newIndex,
-        };
+  const task = {
+    description,
+    completed: false,
+    index: newIndex,
+  };
 
-        data.push(task);
-        localStorage.setItem('taskList', JSON.stringify(data));
-        console.log(data)
-        display(localStorage)
-      
+  data.push(task);
+  localStorage.setItem('taskList', JSON.stringify(data));
+  display(localStorage);
 };
 
 const removeTask = (localStorage) => {
   const taskContainer = document.querySelector('.task-container');
   const tasks = taskContainer.querySelectorAll('.task');
-  tasks.forEach((task) => {
-    const data = JSON.parse(localStorage.getItem('taskList'));
-    const newArr = []
+  tasks.forEach(() => {
+    // const data = JSON.parse(localStorage.getItem('taskList'));
+    const newArr = [];
     localStorage.setItem('taskList', JSON.stringify(newArr));
-    console.log(task.getAttribute('class'))
     display(localStorage);
   });
 };
 
-export { addTask, removeTask } 
+export { addTask, removeTask };
 // module.exports = removeTask
