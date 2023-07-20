@@ -6,7 +6,9 @@ describe('add and remove items', () => {
     document.body.innerHTML = `
     <div class='task-container'></div>
     `;
-
+    addTask(taskList, localStorage);
+    const tasks = document.querySelectorAll('.task-container .task');
+    expect(tasks).toHaveLength(1);
   });
 
   test('delete an item from the list', () => {
