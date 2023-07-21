@@ -65,5 +65,25 @@ test('completed status update', () => {
     const { completed } = tasks[0];
     expect(completed).toBeTruthy();
   });
+  test('clear all', () => {
+    const data = [{ description: 'description', completed: false, index: 0 }];
+    localStorage.setItem('taskList', JSON.stringify(data));
+    document.body.innerHTML = `
+    <div class='task-container'>
+      <div class='task'>
+          <label class="checkbox-container">
+            <input class="checkbox" type="checkbox" id="task-${data[0].index}" name="task" value="${data[0].description}" checked>
+            <span class="checkmark"></span>
+          </label>
+          <div class="content" contentEditable="true">
+            ${data[0].description}
+          </div>
+      </div>
+    </div>
+    `;
+    clearAll();
+    const tasks = document.querySelectorAll('.task-container .task');
+    expect(tasks).toHaveLength(0);
+  });
  
 });
